@@ -1,9 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import Button from "../Button";
-import styled from 'styled-components';
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import useStep from "../../hooks/useStep"; 
+import questionsLengthState from "../../stores/questions/questionsLengthState";
 
-function ActionButtons({ questionLength, step }) {
-  const isLast = questionLength - 1 === step;
+function ActionButtons() {
+  const step = useStep();
+  const questionsLength = useRecoilValue(questionsLengthState);
+  const isLast = questionsLength - 1 === step;
   const navigate = useNavigate();
 
   return (
